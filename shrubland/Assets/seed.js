@@ -15,10 +15,9 @@ class Seed{
     }
 
  display(){
-     var pos = this.body.position;
+      var pos = this.body.position;
      imageMode(CENTER);
      image(this.image, pos.x, pos.y, 30,30);
     
     }   
-
 }

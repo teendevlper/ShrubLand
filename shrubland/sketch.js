@@ -13,16 +13,29 @@ var database;
 // Game
 var gameState = 0, game;
 
+
 // Menu
-var menu;
+var menu; 
+var vol; //volume
+var volslider;
+var color1,color2,color3;
+
+
+// Selection
+var select1;
+var buttons;
 
 // Images
 var logo, backgroundIMG, EnemyGroundIMG, GroundIMG, shterbseimg, shterimg, factboxIMG, potIMG, backgroundIMG, ig;
 var Spotify;
+var Youtube;
 
 // Fonts
 var orangekd, bitpap, pixelated,PixelVille;
 var font;
+
+// Sounds
+
 
 // Texts
 var color1, color2, color3;
@@ -59,8 +72,9 @@ function preload(){
 orangekd          = loadFont("Assets/Fonts/orange.ttf");
 bitpap            = loadFont("Assets/Fonts/BitPap.ttf");
 pixelated         = loadFont("Assets/Fonts/PixelFlag.ttf");
-PixelVille        = loadFont("Assets/Fonts/PixelvilleLowRes.ttf")
+PixelVille        = loadFont("Assets/Fonts/PixelvilleLowRes.ttf");
 
+Youtube           = loadImage("Assets/Images/YouTube.png");
 Spotify           = loadImage("Assets/Images/spotify.png");
 ig                = loadImage("Assets/Images/instagram.png");
 GroundIMG         = loadImage("Assets/images/Platform.png");
@@ -82,12 +96,18 @@ engine   = Engine.create();
 world    = engine.world;
 database = firebase.database();
 
+var VolumeREF = database.ref('Volume');
+VolumeREF.on("value", function(data){
+
+}); 
 
 
 //                    G A M E   S E T U P
 game              = new Game();
 game.getGameState();
 game.startGame();
+
+
 
 seed              = new Seed(1150, 100, .003);
 platform          = new Ground(displayWidth - 170, displayHeight - 200, 340, 399);
@@ -99,6 +119,8 @@ plantpotbase      = new Pot(displayWidth - 1290, displayHeight - 676, 50,4);
 plantpotwalleft   = new Pot(displayWidth - 1314, displayHeight - 700, 4, 50);
 plantpotwallright = new Pot(displayWidth - 1267, displayHeight - 700, 4, 50);
 
+buttons           = new Menu();
+select1           = new Selection(200,200,30,30);
 aboutbox          = new About(displayWidth - 500, displayHeight - 500, 500,500);
 
 }
@@ -108,30 +130,29 @@ aboutbox          = new About(displayWidth - 500, displayHeight - 500, 500,500);
 function draw(){
 
 
+
+  
+
+
+
+
 //                       G A M E  S T A T E S
 
   if(gameState === 0){
      clear();
      background(backgroundIMG); 
      image(logo, displayWidth - 910 ,displayHeight - 700 , 422, 102);
-  
+    
   
        menu.quitButtonHide();
        menu.playButtonShow();
        menu.aboutButtonShow();
        menu.backButtonHide();
+       menu.selectButtonHide();
    }
   
-  if(gameState === 1){
-    clear();
-    menu.playButtonHide();
-    menu.quitButtonShow();
-    menu.aboutButtonHide();
-    menu.backButtonHide();
-    game.playGame();
-   }
-   
-   if(gameState === 2){
+  //    A B O U T
+  if(gameState === "about"){
     aboutbox.display();
     menu.backButtonShow();
     if(frameCount % 50 === 0){
@@ -156,10 +177,59 @@ function draw(){
     text(":   xkxnsh", displayWidth - 280, displayHeight - 180);
     image(Spotify, displayWidth - 348, displayHeight - 155, 50,45);
     text(":   ekora", displayWidth - 280, displayHeight - 125);
+    image(Youtube, displayWidth - 388, displayHeight - 139, 130, 130);
+    text(":   DebugAble", displayWidth - 280, displayHeight - 65);
+   
+    menu.selectButtonHide();
+  }
+  
+
+   if(gameState === 1){
+    background(backgroundIMG);
+     menu.playButtonHide();
+     menu.quitButtonShow();
+     menu.aboutButtonHide();
+     menu.backButtonHide();
+     
+     if(frameCount % 20 === 0){
+       color1 = 0;
+      }
+      if(frameCount % 20 === 0){
+       color2 = random(0,100);
+      }
+      if(frameCount % 20 === 0){
+       color3 = random(0,50);
+      }
+     
+  
+  
+      fill(color1,color2,color3);
+      textSize(40);
+      textFont(orangekd);
+      text("Choose Your Seed",displayWidth - 840, displayHeight - 800);
+  
+  
+     
+     select1.display();
+    menu.selectButtonShow();
+     
+   }
+
+   
+  
+  
+   if(gameState === 3){
+    clear();
+    menu.playButtonHide();
+    menu.quitButtonShow();
+    menu.aboutButtonHide();
+    menu.backButtonHide();
+    game.playGame();
+    menu.selectButtonHide();
+   }  
 
 }
- 
-}
+
 
 
 

@@ -21,5 +21,14 @@ display(){
    
     pop();
  }
-
-}
+ /*turn(){
+     var pos = this.rect.position; 
+     angleMode(DEGREES); 
+     imageMode(CENTER); 
+     let a = atan2(mouseY - height / 2, mouseX - width / 2); 
+     translate(pos.x, pos.y); 
+     push();
+      rotate(a);
+       image(this.image,0,0, 90, 20); // Larger rectangle is rotating in degrees pop(); }
+ }*/
+    }
