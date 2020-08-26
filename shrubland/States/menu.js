@@ -5,8 +5,6 @@ class Menu{
         this.quitButton       = createButton("Quit");
         this.aboutButton      = createButton("About");
         this.backButton       = createButton("Back");
-        this.seedone          = createButton("Select");
-        this.seedtwo          = createButton("Select");
     }
 
   display(){
@@ -59,7 +57,7 @@ class Menu{
         this.aboutButton.style("background-color","#77dd00");
    });
     this.aboutButton.mousePressed( () =>{
-        game.updateGameState("about");
+        game.updateGameState(2);
        
     });
 
@@ -80,47 +78,12 @@ class Menu{
         game.updateGameState(0);
        
     });
-
-    this.seedone.position(displayWidth - 1020, displayHeight - 495);
-    this.seedone.size(203,50);
-    this.seedone.style("background-color","#77dd00");
-    this.seedone.style("color","#fff");
-    this.seedone.style("font-family", 'Do Hyeon', 'sans-serif' );
-    this.seedone.style("font-size","20px");
-    this.seedone.mouseOver( () =>{
-      this.aboutButton.style("background-color","#77dd77");
-    });
- this.seedone.mouseOut( () =>{
-     this.aboutButton.style("background-color","#77dd00");
-    });
- this.seedone.mousePressed( () =>{
-     game.updateGameState(3);
-    
-    });
-
-    this.seedtwo.position(displayWidth - 620, displayHeight - 495);
-    this.seedtwo.size(203,50);
-    this.seedtwo.style("background-color","#77dd00");
-    this.seedtwo.style("color","#fff");
-    this.seedtwo.style("font-family", 'Do Hyeon', 'sans-serif' );
-    this.seedtwo.style("font-size","20px");
-    this.seedone.mouseOver( () =>{
-      this.aboutButton.style("background-color","#77dd77");
-    });
- this.seedtwo.mouseOut( () =>{
-     this.aboutButton.style("background-color","#77dd00");
-  });
- this.seedtwo.mousePressed( () =>{
-     game.updateGameState(3);
-    
-  });
-
   }
   
   quitButtonHide(){
     this.quitButton.hide();  
   }
- 
+
   playButtonHide(){
     this.playButton.hide();
   }
@@ -133,15 +96,7 @@ class Menu{
     this.backButton.hide();
   }
 
-  selectButtonHide(){
-     this.seedone.hide();
-     this.seedtwo.hide();
-  }
   
-  selectButtonShow(){
-    this.seedone.show();
-    this.seedtwo.show();
- }
 
   playButtonShow(){
     this.playButton.show();
@@ -158,6 +113,7 @@ class Menu{
   backButtonShow(){
     this.backButton.show();
   }
+
 
 
 }

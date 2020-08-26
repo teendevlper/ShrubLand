@@ -34,7 +34,7 @@ background("#ff6961");   // PASTEL RED COLOR
 Engine.update(engine);
 
     // Display
-    seed.display();
+ 
     platform.display();
     platform2.display();
     playerBase.display();
@@ -43,7 +43,7 @@ Engine.update(engine);
     plantpotwalleft.display();
     plantpotwallright.display();
     PlayerShooter.display();
-
+    seed.display();
 
 
 // Texts
